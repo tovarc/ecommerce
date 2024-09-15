@@ -1,0 +1,48 @@
+<aside [class]="sidebarClass">
+  <button (click)="toggleSidebar()" class="absolute top-4 right-4 text-white">
+    <svg
+      *ngIf="isCollapsed"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
+      />
+    </svg>
+    <svg
+      *ngIf="!isCollapsed"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
+      />
+    </svg>
+  </button>
+  <nav class="mt-8">
+    <ul>
+      <li *ngFor="let item of menuItems" class="mb-4">
+        <a
+          [routerLink]="item.route"
+          class="flex items-center text-white hover:text-teal-300 transition-colors duration-200"
+          [title]="isCollapsed ? item.label : ''"
+        >
+          <span class="text-xl mr-4" [innerHTML]="item.icon | safeHtml"></span>
+          <span [class.hidden]="isCollapsed">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
