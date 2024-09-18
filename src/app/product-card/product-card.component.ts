@@ -5,40 +5,93 @@ import { Component, Input } from '@angular/core';
   selector: 'app-product-card',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="product-card">
-      <img [src]="product.image" [alt]="product.name" />
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.description }}</p>
-      <p class="price">{{ product.price | currency: 'EUR' }}</p>
-      <button>Add to Cart</button>
-    </div>
-  `,
-  styles: [
-    `
-      .product-card {
-        border: 1px solid #ddd;
-        padding: 15px;
-        text-align: center;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      .price {
-        font-weight: bold;
-        color: #007bff;
-      }
-      button {
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-      }
-    `,
-  ],
+  templateUrl: './product-card.component.html',
 })
 export class ProductCardComponent {
-  @Input() product: any;
+  products = [
+    {
+      name: 'Chuleton de Vaca Rubia',
+      price: 72,
+      description: 'Chuleton de 1kg',
+      image:
+        'https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFtYiUyMGNob3BzfGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Solomillo de Ternera',
+      price: 89,
+      description: 'Solomillo premium de 500g',
+      image:
+        'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmlsZXQlMjBtaWdub258ZW58MHx8MHx8fDA%3D',
+    },
+    {
+      name: 'Entrecot de Buey',
+      price: 65,
+      description: 'Entrecot jugoso de 400g',
+      image:
+        'https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmliZXllfGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Lomo Bajo de Vaca',
+      price: 58,
+      description: 'Lomo bajo marmoleado de 300g',
+      image:
+        'https://images.unsplash.com/photo-1544025162-d76694265947?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHN0ZWFrfGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Picaña de Ternera',
+      price: 55,
+      description: 'Picaña tierna de 350g',
+      image:
+        'https://images.unsplash.com/photo-1501595091296-3aa970afb3ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVuYSUyMHN0ZWFrfGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Costillas de Cerdo',
+      price: 42,
+      description: 'Rack de costillas de 800g',
+      image:
+        'https://images.unsplash.com/photo-1544025162-d76694265947?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHN0ZWFrfGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Pechuga de Pollo',
+      price: 28,
+      description: 'Pechuga de pollo de corral 500g',
+      image:
+        'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpY2tlbiUyMGJyZWFzdHxlbnwwfHwwfHx8MA%3D%3D',
+    },
+    {
+      name: 'Magret de Pato',
+      price: 62,
+      description: 'Magret de pato francés 300g',
+      image:
+        'https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHVjayUyMGJyZWFzdHxlbnwwfHwwfHx8MA%3D%3D',
+    },
+    {
+      name: 'Chuletas de Cordero',
+      price: 52,
+      description: 'Chuletas de cordero lechal 400g',
+      image:
+        'https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFtYiUyMGNob3BzfGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Lomo de Atún',
+      price: 75,
+      description: 'Lomo de atún rojo 250g',
+      image:
+        'https://images.unsplash.com/photo-1501595091296-3aa970afb3ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVuYSUyMHN0ZWFrfGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Salmón Noruego',
+      price: 48,
+      description: 'Filete de salmón noruego 300g',
+      image:
+        'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2FsbW9ufGVufDB8fDB8fHww',
+    },
+    {
+      name: 'Codorniz Entera',
+      price: 35,
+      description: 'Codorniz entera de 200g',
+      image:
+        'https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmliZXllfGVufDB8fDB8fHww',
+    },
+  ];
 }
