@@ -1,17 +1,23 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CartComponent } from '../cart/cart.component';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CartComponent],
   templateUrl: './client.component.html',
-  styleUrl: './client.component.scss'
+  styleUrl: './client.component.scss',
 })
 export class ClientComponent {
-
+  cartService = inject(CartService);
   collapse = signal(false);
   toggleCollapse = () => this.collapse.update((s) => !s);
+
+  showCart = false;
+
+  toggleShowCart = () => (this.showCart = !this.showCart);
 
   menuItems = [
     {
@@ -31,4 +37,5 @@ export class ClientComponent {
       label: 'Cerrar Sesion',
     },
   ];
+
 }
