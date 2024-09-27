@@ -11,6 +11,29 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./login/login.component').then((m) => m.LoginComponent),
   },
+
+  {
+    path: 'vendor',
+    loadComponent: () =>
+      import('./vendor/vendor.component').then((m) => m.VendorComponent),
+    children: [
+      {
+        path: 'products',
+        loadComponent: () =>
+          import('./products/product.component').then(
+            (m) => m.ProductsComponent,
+          ),
+      },
+
+      {
+        path: 'add-product',
+        loadComponent: () =>
+          import('./product-add/product-add.component').then(
+            (m) => m.ProductsAddComponent,
+          ),
+      },
+    ],
+  },
   {
     path: 'client',
     loadComponent: () =>
